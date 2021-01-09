@@ -1,0 +1,65 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="container">
+    <div class="row">
+        <h2> Employee <span style="color: seagreen;">Report</span></h2>
+               <div id="custom-search-input">
+                                <div class="input-group col-md-12" style="text-align: right">
+                                     <input type="text" class="search-query form-control" placeholder="Search With Designation"  name="desig" [(ngModel)]="desig"/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="button" (click)="findByDesignation()">
+                                            <span class=" glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span> 
+                                    <div>
+                                        <img [src]="pdfImageIcon" (click)="generateReportWithData('pdf')" alt="PDF generator" style="width: 34px; height: 38px;">  
+                                        <img [src]="excelImageIcon" (click)="generateReportWithData('excel')" alt="Excel generator" style="width: 39px; height: 38px;margin-left: 5px;">
+                                    </div>
+                                    
+    
+                               </div>
+                               <div class="inprogress" *ngIf="inprogressMsgShow" style="  float: right; margin-right: 450px;  margin-top: 30px;">{{inprogress}}</div>
+    
+                            </div>
+    </div>
+   <div class="container">
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Salary</th>
+            <th>DOj</th>
+            
+            <!-- <th>Action</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.designation}}</td>
+            <td>{{employee.salary}}</td>
+            <td>{{employee.doj}}</td>
+        </tr>
+    </tbody>
+    </table>
+    </div>
+
+    
+</div>
+
+<div class="row">
+    <div class="successMsg" style="color: green;" *ngIf="successMsgShow">{{successMsg}}</div>
+    <div class="failureMsg" style="color: red;" *ngIf="failedMsgShow">Report failed to generated </div>
+</div>
+
+
+
